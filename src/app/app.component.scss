@@ -1,0 +1,41 @@
+.gray {
+  color: #5f6973;
+}
+
+.red {
+  color: #bb4949;
+}
+
+.yellow {
+  color: #b3b33d;
+}
+
+.green {
+  color: #4bb24b;
+}
+
+.section {
+  font: 20px bold;
+}
+
+form{
+  width: 270px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 20px;
+  border: 3px solid #5f6973;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+

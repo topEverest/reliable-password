@@ -1,64 +1,18 @@
-<!--Simple variant without material-->
-<!--<form [formGroup]="form" class="form" (ngSubmit)="go()">-->
-<!--  <input-->
-<!--    formControlName="password"-->
-<!--    placeholder="password..."-->
-<!--    type="password"-->
-<!--    (input)="checkPassword()">-->
-<!--  <div *ngIf="password?.invalid">-->
-<!--    <small *ngIf="password?.errors?.['required'] && (password?.dirty || password?.touched)" class="red">-->
-<!--      Password is <strong>required</strong>-->
-<!--    </small>-->
-<!--    <small *ngIf="password?.errors?.['minlength']" class="red">-->
-<!--      Must have at least 8 symbols. Now it is {{password?.value?.length}}-->
-<!--    </small>-->
-<!--  </div>-->
-<!--  <div [ngClass]="{'red': password?.errors?.['minlength'], 'gray': password?.value?.length === 0}">-->
-<!--    <div class="section" [ngClass]="{'red': easy, 'yellow': medium, 'green': strong}">The password is easy</div>-->
-<!--    <div class="section" [ngClass]="{'gray': easy, 'yellow': medium, 'green': strong}">The password is middle</div>-->
-<!--    <div class="section" [ngClass]="{'gray': easy || medium, 'green': strong}">The password is strong</div>-->
-<!--    <button [disabled]="!validForm">Go</button>-->
-<!--  </div>-->
-<!--</form>-->
+<form class="form" [formGroup]="form" (ngSubmit)="go()">
 
+  <app-custom-password-input formControlName="password"></app-custom-password-input>
+  <app-password-status
+    [passwordControl]="control"
+    [password]="passwordInputString"
+    (validForm)="disableButton = $event"
+  ></app-password-status>
 
-<!--Variant with material-->
-<form class="form" [formGroup]="form" class="form" (ngSubmit)="go()">
-  <mat-form-field>
-    <mat-label>Password</mat-label>
-    <input
-      type="password"
-      matInput
-      formControlName="password"
-      [errorStateMatcher]="matcher"
-      placeholder="Enter here your password..."
-      (input)="checkPassword()">
+  <button
+    mat-raised-button
+    type="submit"
+    color="primary"
+    [disabled]="disableButton"
+  >Go
+  </button>
 
-    <mat-error *ngIf="password?.errors?.['minlength']">
-      Must have at least 8 symbols. Now it is {{password?.value?.length}}
-    </mat-error>
-
-    <mat-error *ngIf="password?.errors?.['required'] && password?.touched">
-      Password is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-
-  <div [ngClass]="{'red': password?.errors?.['minlength'], 'gray': password?.value?.length === 0}">
-    <div class="section" [ngClass]="{'red': easy, 'yellow': medium, 'green': strong}">The password is easy</div>
-    <div class="section" [ngClass]="{'gray': easy, 'yellow': medium, 'green': strong}">The password is middle</div>
-    <div class="section" [ngClass]="{'gray': easy || medium, 'green': strong}">The password is strong</div>
-
-    <button
-      mat-raised-button
-      type="submit"
-      color="primary"
-      [disabled]="!validForm"
-    >Go
-    </button>
-
-  </div>
 </form>
-
-
-
-
